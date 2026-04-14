@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vasuki Premium | Smart NFC Solutions</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --amazon-dark: #232f3e;
+            --amazon-light: #37475a;
+            --amazon-yellow: #febd69;
+            --amazon-gold: #f3a847;
+            --accent-color: #25d366;
+            --bg-color: #f0f2f5;
+            --white: #ffffff;
+            --text-dark: #111111;
+            --transition: all 0.3s ease-in-out;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        body { background-color: var(--bg-color); color: var(--text-dark); overflow-x: hidden; }
+        a { text-decoration: none; color: inherit; }
+
+        /* --- NAVIGATION BAR --- */
+        .navbar {
+            display: flex; justify-content: space-between; align-items: center;
+            background-color: var(--amazon-dark); padding: 12px 6%; color: white;
+            position: sticky; top: 0; z-index: 1000; box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        /* Permanent Logo using Icon + Text */
+        .logo { 
+            font-size: 28px; font-weight: 800; letter-spacing: 2px; 
+            color: var(--amazon-yellow); display: flex; align-items: center; gap: 10px; 
+        }
+        .logo i { font-size: 30px; }
+
+        .nav-menu { display: flex; align-items: center; list-style: none; }
+        .nav-item { margin-left: 25px; }
+        .nav-link { font-size: 14px; font-weight: 500; display: flex; align-items: center; gap: 8px; transition: var(--transition); }
+        .nav-link:hover { color: var(--amazon-yellow); }
+
+        .login-btn {
+            background-color: var(--amazon-yellow); color: #000;
+            padding: 8px 20px; border-radius: 5px; font-weight: 700;
+            border: none; cursor: pointer; transition: var(--transition);
+            display: flex; align-items: center; gap: 8px;
+        }
+        .login-btn:hover { background-color: var(--amazon-gold); box-shadow: 0 0 10px var(--amazon-yellow); }
+
+        /* --- HERO SLIDER --- */
+        .hero-section { width: 100%; height: 500px; overflow: hidden; position: relative; }
+        /* Slider container ki width 300% honi chahiye kyunki 3 images hain */
+.slider { 
+    display: flex; 
+    width: 300%; /* 3 images = 300% */
+    height: 100%; 
+    transition: transform 0.8s ease-in-out; 
+}
+
+/* Har slide ki width exactly 33.33% honi chahiye */
+.slide { 
+    width: 33.33%; 
+    position: relative; 
+}
+
+.slide img { 
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover; /* Isse image kategi nahi aur zoom out dikhegi */
+    background-color: #000; 
+}
+        .slide-content { position: absolute; top: 50%; left: 10%; transform: translateY(-50%); color: white; }
+        .slide-content h2 { font-size: 45px; margin-bottom: 10px; }
+        .slide-content p { color: var(--amazon-yellow); font-size: 20px; }
+
+        /* --- PRODUCT GRID --- */
+        .section-title { text-align: center; margin: 40px 0; font-size: 32px; font-weight: 700; }
+        .products-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; padding: 0 8%; }
+        .card { background: var(--white); border-radius: 15px; overflow: hidden; transition: var(--transition); border: 1px solid #ddd; position: relative; }
+        .card:hover { transform: translateY(-10px); box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
+        .card img { width: 100%; height: 260px; object-fit: contain; background: #fafafa; padding: 20px; }
+        .card-info { padding: 20px; text-align: center; }
+        .price { font-size: 24px; font-weight: 700; color: #B12704; margin: 10px 0; display: block; }
+        .btn-buy { background: #ffd814; border: 1px solid #fcd200; width: 100%; padding: 12px; border-radius: 8px; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; }
+        .btn-buy:hover { background: #f7ca00; }
+
+        /* --- FOOTER (Fixed & Professional) --- */
+        .footer { background: var(--amazon-dark); color: white; padding: 60px 8% 20px; margin-top: 50px; }
+        .footer-content { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 40px; }
+        .footer-col h4 { color: var(--white); margin-bottom: 25px; font-size: 18px; position: relative; display: inline-block; }
+        .footer-col h4::after { content: ''; position: absolute; left: 0; bottom: -5px; width: 50px; height: 2px; background: var(--amazon-yellow); }
+        .footer-col p, .footer-col a { color: #ccc; margin-bottom: 15px; display: flex; align-items: center; gap: 12px; font-size: 14px; transition: 0.3s; }
+        .footer-col a:hover { color: var(--amazon-yellow); padding-left: 5px; }
+        .footer-col i { color: var(--amazon-yellow); width: 20px; text-align: center; }
+        .footer-bottom { text-align: center; padding-top: 30px; border-top: 1px solid #3a4553; margin-top: 30px; font-size: 13px; color: #888; }
+
+        /* --- WHATSAPP --- */
+        .whatsapp-btn { position: fixed; bottom: 30px; right: 30px; width: 65px; height: 65px; background: var(--accent-color); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 35px; z-index: 1000; box-shadow: 0 10px 25px rgba(0,0,0,0.3); transition: 0.3s; }
+        .whatsapp-btn:hover { transform: scale(1.1); }
+        .nfc-info-section {
+    padding: 60px 10%;
+    background-color: #ffffff;
+    line-height: 1.8;
+}
+
+.content-wrapper {
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.main-title {
+    font-size: 36px;
+    color: var(--amazon-dark);
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.sub-title {
+    font-size: 22px;
+    color: #f3a847; /* Gold/Yellow shade */
+    margin-bottom: 25px;
+}
+
+.description {
+    font-size: 16px;
+    color: #444;
+    margin-bottom: 20px;
+    text-align: justify; /* Professional look ke liye text barabar rakha hai */
+}
+
+.features-title {
+    font-size: 24px;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    color: var(--amazon-dark);
+}
+
+.features-list {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    text-align: left;
+}
+
+.features-list li {
+    background: #f9f9f9;
+    padding: 15px;
+    border-left: 4px solid #f3a847;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+/* Mobile responsive fixes */
+@media (max-width: 768px) {
+    .main-title { font-size: 28px; }
+    .nfc-info-section { padding: 40px 5%; }
+}
+/* --- RESPONSIVE ADJUSTMENTS --- */
+
+/* 1. Laptop & Desktop (Badi Screens) */
+@media (min-width: 1024px) {
+    .nfc-info-section {
+        padding: 80px 15%; /* Laptop par zyada space */
+    }
+    .main-title {
+        font-size: 48px; /* Badi screen par badi heading */
+    }
+    .features-list {
+        grid-template-columns: repeat(2, 1fr); /* 2 columns mein features dikhenge */
+    }
+}
+
+/* 2. Tablets (Medium Screens) */
+@media (max-width: 1023px) and (min-width: 768px) {
+    .main-title {
+        font-size: 36px;
+    }
+    .nfc-info-section {
+        padding: 60px 10%;
+    }
+}
+
+/* 3. Mobile Phones (Choti Screens) */
+@media (max-width: 767px) {
+    .video-hero {
+        height: 300px; /* Mobile par video height thodi kam takki content upar dikhe */
+    }
+    .main-title {
+        font-size: 26px; /* Mobile par heading choti */
+        line-height: 1.3;
+    }
+    .sub-title {
+        font-size: 18px;
+    }
+    .description {
+        font-size: 15px;
+        text-align: left; /* Mobile par left-align zyada readable hota hai */
+    }
+    .nfc-info-section {
+        padding: 40px 6%; /* Mobile par side margins kam */
+    }
+    .features-list {
+        grid-template-columns: 1fr; /* Mobile par features ek ke niche ek aayenge */
+    }
+    .features-list li {
+        padding: 12px;
+        font-size: 13px;
+    }
+}
+    </style>
+</head>
+<body>
+
+    <a href="https://wa.me/91959379729" class="whatsapp-btn" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <nav class="navbar">
+        <div class="logo">
+            <i class="fas fa-id-card-clip"></i> VASUKI
+        </div>
+        
+        <ul class="nav-menu">
+            <li class="nav-item"><a href="#" class="nav-link"><i class="fas fa-house"></i> Home</a></li>
+            <li class="nav-item"><a href="Collection.html" class="nav-link"><i class="fas fa-boxes-stacked"></i> Collection</a></li>
+            <li class="nav-item"><a href="#" class="nav-link"><i class="fas fa-gears"></i> Services</a></li>
+            <li class="nav-item"><a href="#" class="nav-link"><i class="fas fa-star"></i> Reviews</a></li>
+            <li class="nav-item">
+                <button class="login-btn">
+                    <i class="fas fa-right-to-bracket"></i> Login
+                </button>
+            </li>
+        </ul>
+    </nav>
+
+   <section class="hero-section">
+        <div class="slider" id="mainSlider">
+            
+            <div class="slide">
+                <img src="https://i.ibb.co/RL4GTrJ/b.png" alt="Premium Vasuki Card">
+                <div class="slide-content">
+                    <h2>Vasuki Premium NFC</h2>
+                    <p>Modern Metal & Matte Finish</p>
+                </div>
+            </div>
+
+            <div class="slide">
+                <img src="https://i.ibb.co/CsKkQXnK/a.png" alt="Tap to Share">
+                <div class="slide-content">
+                    <h2>Tap to Share</h2>
+                    <p>Instantly share your profile, socials & contact.</p>
+                </div>
+            </div>
+
+            <div class="slide">
+                <img src="https://i.ibb.co/Z6HsKjZy/c.png" alt="Future Networking">
+                <div class="slide-content">
+                    <h2>Future of Connections</h2>
+                    <p>Designed Specially for your Business</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <h2 class="section-title">Exclusive Collection</h2>
+    <div class="products-grid">
+        <div class="card">
+            <img src="https://i.ibb.co/ymQPPX4Q/1.png" alt="Black Card">
+            <div class="card-info">
+                <h3>VASUKI Black Edition</h3>
+                <span class="price">₹499</span>
+                <button class="btn-buy"><i class="fas fa-cart-shopping"></i> Buy Now</button>
+            </div>
+        </div>
+        <div class="card">
+            <img src="https://i.ibb.co/NgTVgwGj/2.png" alt="White Card">
+            <div class="card-info">
+                <h3>VASUKI White Edition</h3>
+                <span class="price">₹399</span>
+                <button class="btn-buy"><i class="fas fa-cart-shopping"></i> Buy Now</button>
+            </div>
+        </div>
+        <div class="card">
+            <img src="https://i.ibb.co/Fq6Dcz8W/5.png" alt="Custom Card">
+            <div class="card-info">
+                <h3>VASUKI Custom Design</h3>
+                <span class="price">₹399</span>
+                <button class="btn-buy"><i class="fas fa-cart-shopping"></i> Buy Now</button>
+            </div>
+        </div>
+    </div>
+    <div class="nfc-info-section">
+    <div class="content-wrapper">
+        <h1 class="main-title">Modernize Your Networking with VASUKI NFC</h1>
+        
+        <h2 class="sub-title">Ek Tap, Aur Aapka Kaam Ho Gaya!</h2>
+        
+        <p class="description">
+            Purane paper business cards ka zamana ab khatam ho chuka hai. <strong>VASUKI Premium NFC Cards</strong> ke saath, aap apni poori digital profile—social media links, contact details, aur website—sirf ek tap mein kisi bhi smartphone par share kar sakte hain. Na kisi app ki zaroorat hai, na kisi QR code ko scan karne ki mehnat.
+        </p>
+        
+        <p class="description">
+            Hamare cards premium matte aur metal finish mein aate hain, jo aapki personality ko ek alag hi "Classy" look dete hain. Ye na sirf environment-friendly hain, balki lifetime tak chalte hain. Ek baar invest kijiye aur hamesha ke liye impact chhodiye.
+        </p>
+
+        <h3 class="features-title">Kyun Chunein VASUKI Smart Card?</h3>
+        <ul class="features-list">
+            <li><strong>Instant Sharing:</strong> Ek second mein profile share karein.</li>
+            <li><strong>No App Required:</strong> Samne wale ko koi app download nahi karni padti.</li>
+            <li><strong>Eco-Friendly:</strong> Hazaron paper cards bachayein.</li>
+            <li><strong>Custom Design:</strong> Aapka naam aur logo card par print hoga.</li>
+        </ul>
+    </div>
+</div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-col">
+                <h4>About Vasuki</h4>
+                <p>We are India's leading provider of smart business networking solutions. Connect faster and smarter.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <a href="#"><i class="fas fa-caret-right"></i> Shop Cards</a>
+                <a href="#"><i class="fas fa-caret-right"></i> Track Order</a>
+                <a href="#"><i class="fas fa-caret-right"></i> Privacy Policy</a>
+            </div>
+            <div class="footer-col">
+                <h4>Contact Info</h4>
+                <p><i class="fas fa-phone"></i> +91 95937 97290</p>
+                <p><i class="fas fa-envelope"></i> lakhhanprajapat@gmail.com</p>
+                <p><i class="fas fa-location-dot"></i> Jaipur, Rajasthan, India</p>
+            </div>
+            <div class="footer-col">
+                <h4>Follow Us</h4>
+                <div style="display: flex; gap: 15px; margin-top: 10px;">
+                    <a href="#"><i class="fab fa-instagram" style="font-size: 20px;"></i></a>
+                    <a href="#"><i class="fab fa-facebook" style="font-size: 20px;"></i></a>
+                    <a href="#"><i class="fab fa-linkedin" style="font-size: 20px;"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2026 VASUKI Smart NFC Cards | Designed for the Future.
+        </div>
+    </footer>
+
+    <script>
+    const slider = document.getElementById('mainSlider');
+    let index = 0;
+
+    setInterval(() => {
+        index = (index + 1) % 3; // 3 images hain isliye % 3
+        
+        // Har image ko shift karne ke liye 33.33% move karna hoga
+        let shift = index * (100 / 3); 
+        slider.style.transform = `translateX(-${shift}%)`; 
+    }, 4000); // Har 4 second mein change hoga
+</script>
+</body>
+</html>
